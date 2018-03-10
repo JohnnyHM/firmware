@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include <stdint.h>
 
 #ifndef INT16_MAX

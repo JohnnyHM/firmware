@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "FilterCascaded.h"
 #include "TempSensorBasic.h"
 #include <stdlib.h>

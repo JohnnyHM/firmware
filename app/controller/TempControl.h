@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "TemperatureFormats.h"
 #include "Platform.h"
 #include "TempSensor.h"

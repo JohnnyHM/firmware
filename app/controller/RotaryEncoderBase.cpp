@@ -17,13 +17,13 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "RotaryEncoder.h"
 
 #include <limits.h>
 #include "Ticks.h"
 #include "Display.h"
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "TempControl.h"
 
 RotaryEncoder rotaryEncoder;

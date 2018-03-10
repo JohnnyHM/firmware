@@ -1,7 +1,7 @@
 #pragma once 
 
 #include <inttypes.h>
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 // implements a OneWire driver by bitbanging a pin on AVR
 

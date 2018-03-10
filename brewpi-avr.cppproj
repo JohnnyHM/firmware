@@ -146,7 +146,7 @@
     <Compile Include="app\controller\Brewpi.cpp">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="app\controller\Brewpi.h">
+    <Compile Include="app\controller\BrewPi.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="app\controller\BrewpiStrings.cpp">

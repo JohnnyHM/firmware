@@ -18,7 +18,7 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "BrewpiStrings.h"
 #include "DeviceManager.h"
 #include "TempControl.h"

@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Actuator.h"
 
 #if BREWPI_BUZZER

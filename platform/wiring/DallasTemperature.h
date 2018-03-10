@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "TemperatureFormats.h"
 
 #define DALLASTEMPLIBVERSION "3.7.2"

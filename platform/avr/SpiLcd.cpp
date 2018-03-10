@@ -19,7 +19,7 @@
 
 #include "SpiLcd.h"
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include <stdio.h>
 #include <string.h>
 #include <inttypes.h>

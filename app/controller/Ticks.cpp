@@ -18,7 +18,7 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Ticks.h"
 
 // return time that has passed since timeStamp, take overflow into account

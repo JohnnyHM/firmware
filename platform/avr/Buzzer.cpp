@@ -20,7 +20,7 @@
  */
 
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Ticks.h"
 #include "Pins.h"
 #include "Buzzer.h"

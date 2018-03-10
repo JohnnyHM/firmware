@@ -25,7 +25,7 @@
  * 'ArduinoFunctions.cpp' includes all the source files from Arduino that are used. You might have to edit it if you are not using a Leonardo.
  * That is all that is needed! No hassle with makefiles and compiling libraries.
  */
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Ticks.h"
 #include "Display.h"
 #include "TempControl.h"

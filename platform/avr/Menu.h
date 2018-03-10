@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 #ifndef BREWPI_MENU
 #define BREWPI_MENU 1

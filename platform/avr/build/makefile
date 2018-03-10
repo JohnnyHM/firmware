@@ -57,7 +57,7 @@ AVRSIZE ?= $(TOOLCHAIN_BIN)avr-size$(EXE)
 ARDUINO_VERSION ?= 105
 
 # default config if nothing else specified
-BOARD ?= leonardo
+BOARD ?= uno
 BREWPI_STATIC_CONFIG ?= BREWPI_SHIELD_REV_C
 BREWPI_DEBUG ?= 0
 BUILD_NUMBER ?= 0
@@ -81,6 +81,14 @@ else ifeq ($(BOARD),uno)
 endif
 
 ARDUINO_HEADERS ?= $(SRC)arduino/cores/arduino
+CONTROLLER_HEADERS ?= $(SRC)../../app/controller/
+DEVICES_HEADERS ?= $(SRC)../../app/devices/
+ONEWIRE_HEADERS ?= $(SRC)../../app/devices/OneWire/
+FALLBACK_HEADERS ?= $(SRC)../../app/fallback/
+AVR_HEADERS ?= $(SRC)../avr/
+WIRING_HEADERS ?= $(SRC)../wiring/
+
+BREWPI_HEADERS = -I"$(CONTROLLER_HEADERS)" -I"$(FALLBACK_HEADERS)" -I"$(AVR_HEADERS)" -I"$(DEVICES_HEADERS)" -I"$(WIRING_HEADERS)" -I"$(ONEWIRE_HEADERS)"
 
 MCU_INCLUDE_VARIANT ?= $(SRC)arduino/variants
 MCU_INCLUDE ?= $(MCU_INCLUDE_VARIANT)/$(MCU_HEADERS)
@@ -115,41 +123,6 @@ SUBDIRS :=  \
 $(SRC)fallback
 
 
-# Add inputs and outputs from these tool invocations to the build variables 
-C_SRCS +=  \
-$(SRC)Actuator.cpp \
-$(SRC)ActuatorArduino.cpp \
-$(SRC)ArduinoFunctions.cpp \
-$(SRC)Brewpi.cpp \
-$(SRC)BrewpiStrings.cpp \
-$(SRC)Buzzer.cpp \
-$(SRC)DallasTemperature.cpp \
-$(SRC)DeviceManager.cpp \
-$(SRC)Display.cpp \
-$(SRC)DisplayLcd.cpp \
-$(SRC)DS2413.cpp \
-$(SRC)EepromManager.cpp \
-$(SRC)FilterCascaded.cpp \
-$(SRC)FilterFixed.cpp \
-$(SRC)Logger.cpp \
-$(SRC)Main.cpp \
-$(SRC)Menu.cpp \
-$(SRC)OLEDFourBit.cpp \
-$(SRC)OneWire.cpp \
-$(SRC)OneWireTempSensor.cpp \
-$(SRC)PiLink.cpp \
-$(SRC)Random.cpp \
-$(SRC)RotaryEncoder.cpp \
-$(SRC)Sensor.cpp \
-$(SRC)SettingsManager.cpp \
-$(SRC)Simulator.cpp \
-$(SRC)SpiLcd.cpp \
-$(SRC)TempControl.cpp \
-$(SRC)TemperatureFormats.cpp \
-$(SRC)TempSensor.cpp \
-$(SRC)Ticks.cpp
-
-
 PREPROCESSING_SRCS += 
 
 
@@ -157,10 +130,9 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-$(OBJ_DIR)Actuator.o \
 $(OBJ_DIR)ActuatorArduinoPin.o \
 $(OBJ_DIR)ArduinoFunctions.o \
-$(OBJ_DIR)Brewpi.o \
+$(OBJ_DIR)BrewPi.o \
 $(OBJ_DIR)BrewpiStrings.o \
 $(OBJ_DIR)Buzzer.o \
 $(OBJ_DIR)DallasTemperature.o \
@@ -176,11 +148,16 @@ $(OBJ_DIR)Main.o \
 $(OBJ_DIR)Menu.o \
 $(OBJ_DIR)OLEDFourBit.o \
 $(OBJ_DIR)OneWire.o \
+$(OBJ_DIR)OneWirePin.o \
 $(OBJ_DIR)OneWireTempSensor.o \
 $(OBJ_DIR)PiLink.o \
 $(OBJ_DIR)Random.o \
 $(OBJ_DIR)RotaryEncoder.o \
-$(OBJ_DIR)Sensor.o \
+$(OBJ_DIR)UI.o \
+$(OBJ_DIR)ActuatorAutoOff.o \
+$(OBJ_DIR)RotaryEncoderBase.o \
+$(OBJ_DIR)TicksWiring.o \
+$(OBJ_DIR)Platform.o \
 $(OBJ_DIR)SettingsManager.o \
 $(OBJ_DIR)Simulator.o \
 $(OBJ_DIR)SpiLcd.o \
@@ -190,10 +167,9 @@ $(OBJ_DIR)TempSensor.o \
 $(OBJ_DIR)Ticks.o
 
 OBJS_AS_ARGS +=  \
-$(OBJ_DIR)Actuator.o \
 $(OBJ_DIR)ActuatorArduinoPin.o \
 $(OBJ_DIR)ArduinoFunctions.o \
-$(OBJ_DIR)Brewpi.o \
+$(OBJ_DIR)BrewPi.o \
 $(OBJ_DIR)BrewpiStrings.o \
 $(OBJ_DIR)Buzzer.o \
 $(OBJ_DIR)DallasTemperature.o \
@@ -209,11 +185,16 @@ $(OBJ_DIR)Main.o \
 $(OBJ_DIR)Menu.o \
 $(OBJ_DIR)OLEDFourBit.o \
 $(OBJ_DIR)OneWire.o \
+$(OBJ_DIR)OneWirePin.o \
 $(OBJ_DIR)OneWireTempSensor.o \
 $(OBJ_DIR)PiLink.o \
 $(OBJ_DIR)Random.o \
 $(OBJ_DIR)RotaryEncoder.o \
-$(OBJ_DIR)Sensor.o \
+$(OBJ_DIR)UI.o \
+$(OBJ_DIR)ActuatorAutoOff.o \
+$(OBJ_DIR)RotaryEncoderBase.o \
+$(OBJ_DIR)TicksWiring.o \
+$(OBJ_DIR)Platform.o \
 $(OBJ_DIR)SettingsManager.o \
 $(OBJ_DIR)Simulator.o \
 $(OBJ_DIR)SpiLcd.o \
@@ -226,7 +207,7 @@ C_DEPS +=  \
 $(OBJ_DIR)Actuator.d \
 $(OBJ_DIR)ActuatorArduinoPin.d \
 $(OBJ_DIR)ArduinoFunctions.d \
-$(OBJ_DIR)Brewpi.d \
+$(OBJ_DIR)BrewPi.d \
 $(OBJ_DIR)BrewpiStrings.d \
 $(OBJ_DIR)Buzzer.d \
 $(OBJ_DIR)DallasTemperature.d \
@@ -259,7 +240,7 @@ C_DEPS_AS_ARGS +=  \
 $(OBJ_DIR)Actuator.d \
 $(OBJ_DIR)ActuatorArduinoPin.d \
 $(OBJ_DIR)ArduinoFunctions.d \
-$(OBJ_DIR)Brewpi.d \
+$(OBJ_DIR)BrewPi.d \
 $(OBJ_DIR)BrewpiStrings.d \
 $(OBJ_DIR)Buzzer.d \
 $(OBJ_DIR)DallasTemperature.d \
@@ -279,7 +260,6 @@ $(OBJ_DIR)OneWireTempSensor.d \
 $(OBJ_DIR)PiLink.d \
 $(OBJ_DIR)Random.d \
 $(OBJ_DIR)RotaryEncoder.d \
-$(OBJ_DIR)Sensor.d \
 $(OBJ_DIR)SettingsManager.d \
 $(OBJ_DIR)Simulator.d \
 $(OBJ_DIR)SpiLcd.d \
@@ -294,8 +274,6 @@ OUTPUT_FILE_PATH_AS_ARGS +=$(OUTPUT_DIR)$(TARGET_NAME).elf
 
 ADDITIONAL_DEPENDENCIES:=
 
-OUTPUT_FILE_DEP:= ./makedep.mk
-
 LIB_DEP+= 
 
 # AVR32/GNU C Compiler
@@ -304,11 +282,34 @@ LIB_DEP+=
 #
 # Recipes
 #
+./$(OBJ_DIR)%.o: $(SRC)../../app/devices/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler
+	"$(AVRGCC)" $(DEFINES) -mcall-prologues -funsigned-char -funsigned-bitfields $(BREWPI_HEADERS) -I"$(ARDUINO_HEADERS)" -I"$(MCU_INCLUDE)" -I"$(SRC)/fallback"  -Os -fno-split-wide-types -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=$(MCU) -c -fno-exceptions -ffreestanding -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$(OBJ_DIR)" "$<"
+	@echo Finished building: $<
+
+./$(OBJ_DIR)%.o: $(SRC)../../app/devices/OneWire/%.cpp 
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler
+	"$(AVRGCC)" $(DEFINES) -mcall-prologues -funsigned-char -funsigned-bitfields $(BREWPI_HEADERS) -I"$(ARDUINO_HEADERS)" -I"$(MCU_INCLUDE)" -I"$(SRC)/fallback"  -Os -fno-split-wide-types -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=$(MCU) -c -fno-exceptions -ffreestanding -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$(OBJ_DIR)" "$<"
+	@echo Finished building: $<
+
+./$(OBJ_DIR)%.o: $(SRC)../../platform/wiring/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler
+	"$(AVRGCC)" $(DEFINES) -mcall-prologues -funsigned-char -funsigned-bitfields $(BREWPI_HEADERS) -I"$(ARDUINO_HEADERS)" -I"$(MCU_INCLUDE)" -I"$(SRC)/fallback"  -Os -fno-split-wide-types -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=$(MCU) -c -fno-exceptions -ffreestanding -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$(OBJ_DIR)" "$<"
+	@echo Finished building: $<
+
+./$(OBJ_DIR)%.o: $(SRC)../../app/controller/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler
+	"$(AVRGCC)" $(DEFINES) -mcall-prologues -funsigned-char -funsigned-bitfields $(BREWPI_HEADERS) -I"$(ARDUINO_HEADERS)" -I"$(MCU_INCLUDE)" -I"$(SRC)/fallback"  -Os -fno-split-wide-types -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=$(MCU) -c -fno-exceptions -ffreestanding -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$(OBJ_DIR)" "$<"
+	@echo Finished building: $<
 
 ./$(OBJ_DIR)%.o: $(SRC)./%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler
-	"$(AVRGCC)" $(DEFINES) -mcall-prologues -funsigned-char -funsigned-bitfields -I"$(ARDUINO_HEADERS)" -I"$(MCU_INCLUDE)" -I"$(SRC)/fallback"  -Os -fno-split-wide-types -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=$(MCU) -c -fno-exceptions -ffreestanding -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$(OBJ_DIR)" "$<"
+	"$(AVRGCC)" $(DEFINES) -mcall-prologues -funsigned-char -funsigned-bitfields $(BREWPI_HEADERS) -I"$(ARDUINO_HEADERS)" -I"$(MCU_INCLUDE)" -I"$(SRC)/fallback"  -Os -fno-split-wide-types -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g3 -Wall -mmcu=$(MCU) -c -fno-exceptions -ffreestanding -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$(OBJ_DIR)" "$<"
 	@echo Finished building: $<
 	
 # AVR32/GNU Preprocessing Assembler
@@ -324,7 +325,7 @@ endif
 # Add inputs and outputs from these tool invocations to the build variables 
 
 # All Target
-all: $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
+all: directories $(OUTPUT_FILE_PATH) $(ADDITIONAL_DEPENDENCIES)
 
 $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP)
 	@echo Building target: $@
@@ -341,11 +342,14 @@ $(OUTPUT_FILE_PATH): $(OBJS) $(USER_OBJS) $(OUTPUT_FILE_DEP) $(LIB_DEP)
 	
 	"$(AVRSIZE)" "$(OUTPUT_DIR)$(TARGET_NAME).elf" > "$(OUTPUT_DIR)$(TARGET_NAME).elf.size"
 
-	
-
 
 # Other Targets
 clean:
 	-$(RM) $(OBJS_AS_ARGS) $(EXECUTABLES)  
 	-$(RM) $(C_DEPS_AS_ARGS)   
 	-$(RM) "$(OUTPUT_DIR)$(TARGET_NAME).elf" "$(OUTPUT_DIR)$(TARGET_NAME).a" "$(OUTPUT_DIR)$(TARGET_NAME).hex" "$(OUTPUT_DIR)$(TARGET_NAME).lss" "$(OUTPUT_DIR)$(TARGET_NAME).eep" "$(OUTPUT_DIR)$(TARGET_NAME).map" "$(OUTPUT_DIR)$(TARGET_NAME).srec"
+
+.PHONY: directories
+
+directories:
+	mkdir -p $(OUTPUT_DIR) $(OBJ_DIR)

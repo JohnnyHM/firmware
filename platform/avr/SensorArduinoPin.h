@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "FastDigitalPin.h"
 #include "Pins.h"
 

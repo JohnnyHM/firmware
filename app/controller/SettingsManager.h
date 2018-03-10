@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include <assert.h>
 #include "EepromManager.h"
 #include "DeviceManager.h"

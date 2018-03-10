@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 #if BREWPI_STATIC_CONFIG==BREWPI_SHIELD_REV_A
 #ifndef beerSensorPin

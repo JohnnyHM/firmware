@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "BrewpiStrings.h"
 #include <stdint.h>
 #include <Print.h>

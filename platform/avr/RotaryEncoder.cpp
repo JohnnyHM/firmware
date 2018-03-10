@@ -17,13 +17,13 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Platform.h"
 #include "RotaryEncoder.h"
 
 #include "Pins.h"
 #include <limits.h>
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 #if BREWPI_STATIC_CONFIG!=BREWPI_SHIELD_DIY
 	#if rotarySwitchPin != 7

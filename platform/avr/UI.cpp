@@ -1,4 +1,4 @@
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "UI.h"
 #include "RotaryEncoder.h"
 #include "Display.h"

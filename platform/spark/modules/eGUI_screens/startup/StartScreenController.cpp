@@ -17,7 +17,7 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */ 
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Platform.h"
 #include "fixstl.h"
 #include <algorithm>

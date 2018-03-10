@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "TempSensorExternal.h"
 #include "Logger.h"
 #include "DeviceManager.h"

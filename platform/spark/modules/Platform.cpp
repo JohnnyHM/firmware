@@ -1,4 +1,4 @@
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "PiLinkHandlers.h"
 #include "DeviceManager.h"
 #include "Pins.h"

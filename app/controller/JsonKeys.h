@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 #ifdef ARDUINO
 #include <avr/pgmspace.h>

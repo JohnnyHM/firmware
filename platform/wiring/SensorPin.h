@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "Pins.h"
 
 class DigitalPinSensor : public SwitchSensor

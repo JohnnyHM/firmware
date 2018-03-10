@@ -18,7 +18,7 @@
  * along with BrewPi.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 void parseBytes(uint8_t* data, const char* s, uint8_t len);
 void printBytes(const uint8_t* data, uint8_t len, char* buf);

@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 #include "TempSensor.h"
 
 class MockTempSensor : public BasicTempSensor

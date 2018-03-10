@@ -19,7 +19,7 @@
 
 #pragma once
 
-#include "Brewpi.h"
+#include "BrewPi.h"
 
 #define oneWirePin 0x0 // actually the i2c address
 
