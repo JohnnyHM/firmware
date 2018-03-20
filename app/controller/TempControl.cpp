@@ -352,6 +352,8 @@ void TempControl::updateState(void){
 		break;
 		case DOOR_OPEN:
 		break; // do nothing
+		case NUM_STATES:
+		break;
 	}			
 }
 

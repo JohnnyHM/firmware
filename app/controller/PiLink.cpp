@@ -177,8 +177,8 @@ void PiLink::receive(void){
                             "\"l\":\"%d\""
                             "}"), 
 					PSTR(VERSION_STRING),               // v:
-					//PSTR(stringify(BUILD_NAME)),      // n:                 
-					PSTR(BUILD_NAME),      // n:                 
+					PSTR(stringify(BUILD_NAME)),      // n:                 
+					//PSTR(BUILD_NAME),      // n:                 
 					BREWPI_STATIC_CONFIG,               // s:
 					BREWPI_SIMULATE,                    // y:
 					BREWPI_BOARD,      // b:
