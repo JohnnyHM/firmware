@@ -269,3 +269,7 @@ void LcdDisplay::printState(void){
 #endif		
 	}
 }
+
+void LcdDisplay::clear(void){
+	lcd.clear();
+}

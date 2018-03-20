@@ -65,6 +65,9 @@ class LcdDisplay DISPLAY_SUPERCLASS
 	// print the current state on the last line of the LCD
 	DISPLAY_METHOD void printState(void);
 
+	// clear the LCD
+	DISPLAY_METHOD void clear(void);
+
 	DISPLAY_METHOD void getLine(uint8_t lineNumber, char * buffer) { lcd.getLine(lineNumber, buffer); }
 
 	DISPLAY_METHOD void printAt_P(uint8_t x, uint8_t y, const char* text);

@@ -107,6 +107,14 @@ void brewpiLoop(void)
         ui.update();
     }	
 
+	static unsigned long lastLcdUpdate = 0;
+	if(ticks.millis() - lastLcdUpdate >= 120000) { // refresh lcd every 2 minutes
+		lastLcdUpdate = ticks.millis();
+	
+		display.clear();
+		display.printAll();
+	}
+	
     //listen for incoming serial connections while waiting to update
     piLink.receive();
 
