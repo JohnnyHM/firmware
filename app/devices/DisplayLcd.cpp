@@ -272,4 +272,5 @@ void LcdDisplay::printState(void){
 
 void LcdDisplay::clear(void){
 	lcd.clear();
+	stateOnDisplay = NUM_STATES;
 }
