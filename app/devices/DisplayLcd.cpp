@@ -272,5 +272,7 @@ void LcdDisplay::printState(void){
 
 void LcdDisplay::clear(void){
 	lcd.clear();
+	lcd.noCursor();
+	lcd.noBlink();
 	stateOnDisplay = NUM_STATES;
 }
